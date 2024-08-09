@@ -1,0 +1,8 @@
+|      | Icon                                                         | Function                                                  |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 1    | ![View details -icon](../assets/images/i-details.png)           | Opens the information dialog box for the agent, tag, or action.    |
+| 2    | ![Delete -icon](../assets/images/i-delete.png)                  | Delete any agent or tag actions. Only agent-activated actions can be deleted from the Agents list and tag-activated actions from the Tags list. |
+| 3    | ![Go to line -icon](../assets/images/i-goto.png)                | Jump to the source file and line number in the code that is associated with the action. |
+| 4    | ![Status -icon](../assets/images/i-toggle.png)                  | Toggle to disable or enable an action. Only agent-activated actions can be toggled from the Agents list and tag-activated actions from the Tags list. |
+| 5    | ![Status -icon](../assets/images/i-status.png)![Status -icon](../assets/images/i-tag.png) | Displays the current state of the action.<br/>- One checks indicates the action was submitted to the server.<br/>- Two checks indicate that it was received by the agent.<br/>- Highlighted checks indicate that the agent accepted the action.<br/>From the Agents list, the tag icon indicates the action was activated with tags and not agents, and its status can be viewed from the Tags list. |
+| 6    | ![Log level -icon](../assets/images/i-loglevel.png)         | Indicates the the level that was configured for the log (on log rows only): Info, Debug, Warn, Error. |

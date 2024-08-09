@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NM8KLL6');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Hotjar Tracking Code for docs.lightrun.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2246781,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<!-- End of Hotjar Tracking Code-->
+
+<!-- Start Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="{{ config.site_description }}">
+<meta property="og:url" content="{{ page.canonical_url }}">
+
+{% if page and page.meta and page.meta.title %}
+<meta property="og:title" content="{{ page.meta.title }}">
+{% elif page and page.title and not page.is_homepage %}
+<meta property="og:title" content="{{ page.title }} - {{ config.site_description }}">
+{% else %}
+<meta property="og:title" content="{{ config.site_description }}">
+{% endif %}
+
+{% if page and page.meta and page.meta.description %}
+<meta property="og:description" content="{{ page.title }}. {{ page.meta.description if page.meta.description|length <= 150 else page.meta.description[0:150] + '..' }}">
+{% else %}
+<meta property="og:description" content="{{ page.title }} - {{ config.site_description }}">
+{% endif %}
+
+<meta property="og:image" content="https://docs.lightrun.com/assets/images/logo-lightrun-dark-social.png">
+<meta property="og:image:alt" content="Lightrun logo">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1086">
+<meta property="og:image:height" content="543">
+<!-- End Open Graph -->
+
+<!-- Start Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@lightruntech">
+
+{% if page and page.meta and page.meta.title %}
+<meta property="twitter:title" content="{{ page.meta.title }}">
+{% elif page and page.title and not page.is_homepage %}
+<meta property="twitter:title" content="{{ page.title }} - {{ config.site_description }}">
+{% else %}
+<meta property="twitter:title" content="{{ config.site_description }}">
+{% endif %}
+
+{% if page and page.meta and page.meta.description %}
+<meta name="twitter:description" content="{{ page.title }}. {{ page.meta.description if page.meta.description|length <= 150 else page.meta.description[0:150] + '..' }}">
+{% else %}
+<meta name="twitter:description" content="{{ page.title }} - {{ config.site_description }}">
+{% endif %}
+
+<meta name="twitter:image" content="https://docs.lightrun.com/assets/images/logo-lightrun-dark-social.png">
+<meta name="twitter:image:alt" content="Lightrun logo">
+<!-- End Twitter Card -->
+
+{% if page and page.meta and page.meta.norobots %}
+<meta name="robots" content="noindex">
+{% endif %}
+
+{% endblock %}
+

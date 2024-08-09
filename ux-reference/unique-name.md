@@ -1,0 +1,1 @@
+A unique name used to distinguish between this and other counters in the printouts

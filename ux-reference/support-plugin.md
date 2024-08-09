@@ -1,0 +1,3 @@
+!!! info "Support"
+    Lightrun currently supports [IntelliJ IDEA](https://www.jetbrains.com/idea/){:target="_blank"}, [PyCharm](https://www.jetbrains.com/pycharm/){:target="_blank"}, [WebStorm](https://www.jetbrains.com/webstorm/){:target="_blank"}, [Visual Studio Code (VSCode)](https://code.visualstudio.com/){:target="_blank"}, [VSCode for the web (vscode.dev)](https://vscode.dev/), and [`code-server`](https://coder.com/docs/code-server/latest).
+    Support for additional IDEs is coming soon - sign up for our [beta program](https://go.lightrun.com/beta) to learn more!

@@ -1,0 +1,841 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "description": "Lightrun REST API Documentation",
+        "title": "Lightrun REST API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://localhost:8080",
+            "description": "Generated server url"
+        }
+    ],
+    "tags": [
+        {
+            "description": "Loaded packages REST API",
+            "name": "Loaded packages"
+        },
+        {
+            "description": "Dynamic SBOM REST API",
+            "name": "Dynamic SBOM"
+        },
+        {
+            "description": "Watched packages Public API",
+            "name": "Watched packages"
+        }
+    ],
+    "paths": {
+        "/api/v1/loaded-packages": {
+            "get": {
+                "description": "Get an array of loaded packages.",
+                "operationId": "listLoadedPackages",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "agentPoolId",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Specify the end date of the range for filtering loaded packages.",
+                        "in": "query",
+                        "name": "loadDateEnd",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "description": "Specify the start date of the range for filtering loaded packages.",
+                        "in": "query",
+                        "name": "loadDateStart",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "description": "Filter packages by package names.",
+                        "in": "query",
+                        "name": "packageNames",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "description": "Filter packages by package versions.",
+                        "in": "query",
+                        "name": "packageVersions",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "description": " The aero-based page index (0..N).",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "schema": {
+                            "minimum": 0,
+                            "type": "integer",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "description": "The size of the page to be returned.",
+                        "in": "query",
+                        "name": "size",
+                        "required": false,
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer",
+                            "default": 20
+                        }
+                    },
+                    {
+                        "description": "Sort criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+                        "in": "query",
+                        "name": "sort",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "description": "Specify the status of packages for filtering:  active, inactive, pending.",
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "NOT_LOADED",
+                                    "LOADED",
+                                    "LOADED_WITH_CLASSES"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "description": "Filter packages based on the distinct combination of tags assigned to the hosts that loaded them.",
+                        "in": "query",
+                        "name": "tags",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PublicApiPageLoadedPackagePublicApiDTO"
+                                }
+                            }
+                        },
+                        "description": "Loaded packages retrieved."
+                    },
+                    "400": {
+                        "description": "Invalid input or object."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    }
+                },
+                "security": [
+                    {
+                        "API Token": []
+                    }
+                ],
+                "summary": "Get an array of loaded packages",
+                "tags": [
+                    "Loaded packages"
+                ]
+            }
+        },
+        "/api/v1/sbom": {
+            "get": {
+                "description": "Get a software bill of materials (SBOM).",
+                "operationId": "getSBOM",
+                "parameters": [
+                    {
+                        "description": "Agent pool ID, required if multiple agent pools configured.",
+                        "in": "query",
+                        "name": "agentPoolId",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Timestamp of when the SBOM was created.",
+                        "in": "query",
+                        "name": "creationTime",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "description": "Get SBOM in the selected data format.",
+                        "in": "query",
+                        "name": "format",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "SPDX",
+                                "CYCLONE_DX",
+                                "CSV"
+                            ]
+                        }
+                    },
+                    {
+                        "description": "Filter SBOM by package name/s.",
+                        "in": "query",
+                        "name": "packageNames",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "description": "Filter SBOM by package version/s.",
+                        "in": "query",
+                        "name": "packageVersions",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "description": "Package name.",
+                        "in": "query",
+                        "name": "sbomPackageName",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Package supplier.",
+                        "in": "query",
+                        "name": "sbomSupplierName",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Package version.",
+                        "in": "query",
+                        "name": "sbomVersion",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter packages based on a distinct combination of tags assigned to the hosts that loaded them.",
+                        "in": "query",
+                        "name": "tags",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SPDXSbomReportDTO"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/CycloneDXSbomReportDTO"
+                                        }
+                                    ]
+                                }
+                            },
+                            "text/plain": {}
+                        },
+                        "description": "SBOM generated."
+                    },
+                    "400": {
+                        "description": "A required attribute of the API request is missing."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    }
+                },
+                "security": [
+                    {
+                        "API Token": []
+                    }
+                ],
+                "summary": "Get a software bill of materials (SBOM)",
+                "tags": [
+                    "Dynamic SBOM"
+                ]
+            }
+        },
+        "/api/v1/watched-packages": {
+            "delete": {
+                "description": "Remove one or more packages from the watch list.",
+                "operationId": "removeWatchedPackages",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "uniqueItems": true,
+                                "type": "array",
+                                "description": "Package IDs to remove.",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "Package/s removed from watch list."
+                    },
+                    "400": {
+                        "description": "Invalid input or object."
+                    },
+                    "404": {
+                        "description": "No such package."
+                    }
+                },
+                "security": [
+                    {
+                        "API Token": []
+                    }
+                ],
+                "summary": "Remove one or more packages from the watch list",
+                "tags": [
+                    "Watched packages"
+                ]
+            },
+            "post": {
+                "description": "Add one or more packages to the watched packages",
+                "operationId": "addWatchedPackages",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "uniqueItems": true,
+                                "type": "array",
+                                "description": "Packages to add.",
+                                "items": {
+                                    "$ref": "#/components/schemas/PackageDTO"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/WatchedPackageDTO"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Package set as a watched package."
+                    },
+                    "400": {
+                        "description": "Invalid input or object."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "409": {
+                        "description": "Package already marked as watched."
+                    }
+                },
+                "security": [
+                    {
+                        "API Token": []
+                    }
+                ],
+                "summary": "Add one or more packages to the watched packages",
+                "tags": [
+                    "Watched packages"
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CycloneDXSbomReportComponentDTO": {
+                "type": "object",
+                "properties": {
+                    "bom-ref": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "evidence": {
+                        "$ref": "#/components/schemas/CycloneDXSbomReportEvidenceDTO"
+                    },
+                    "group": {
+                        "type": "string"
+                    },
+                    "hashes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CycloneDXSbomReportHashDTO"
+                        }
+                    },
+                    "licenses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "purl": {
+                        "type": "string"
+                    },
+                    "scope": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CycloneDXSbomReportDTO": {
+                "type": "object",
+                "properties": {
+                    "bomFormat": {
+                        "type": "string"
+                    },
+                    "components": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CycloneDXSbomReportComponentDTO"
+                        }
+                    },
+                    "dependencies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CycloneDXSbomReportDependecyDTO"
+                        }
+                    },
+                    "metadata": {
+                        "$ref": "#/components/schemas/CycloneDXSbomReportMetadataDTO"
+                    },
+                    "serialNumber": {
+                        "type": "string"
+                    },
+                    "specVersion": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "CycloneDXSbomReportDependecyDTO": {
+                "type": "object",
+                "properties": {
+                    "dependsOn": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "ref": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CycloneDXSbomReportEvidenceDTO": {
+                "type": "object",
+                "properties": {
+                    "occurrences": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CycloneDXSbomReportOccurrenceDTO"
+                        }
+                    }
+                }
+            },
+            "CycloneDXSbomReportHashDTO": {
+                "type": "object",
+                "properties": {
+                    "alg": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CycloneDXSbomReportMetadataDTO": {
+                "type": "object",
+                "properties": {
+                    "component": {
+                        "$ref": "#/components/schemas/CycloneDXSbomReportComponentDTO"
+                    },
+                    "timestamp": {
+                        "type": "string"
+                    },
+                    "tools": {
+                        "$ref": "#/components/schemas/CycloneDXSbomReportToolDTO"
+                    }
+                }
+            },
+            "CycloneDXSbomReportOccurrenceDTO": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CycloneDXSbomReportProviderDTO": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CycloneDXSbomReportServiceDTO": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "provider": {
+                        "$ref": "#/components/schemas/CycloneDXSbomReportProviderDTO"
+                    },
+                    "version": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CycloneDXSbomReportToolDTO": {
+                "type": "object",
+                "properties": {
+                    "services": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CycloneDXSbomReportServiceDTO"
+                        }
+                    }
+                }
+            },
+            "LoadedClassPublicApiDTO": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "NOT_LOADED",
+                            "LOADED"
+                        ]
+                    }
+                }
+            },
+            "LoadedPackagePublicApiDTO": {
+                "type": "object",
+                "properties": {
+                    "classes": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LoadedClassPublicApiDTO"
+                        }
+                    },
+                    "packageName": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "NOT_LOADED",
+                            "LOADED",
+                            "LOADED_WITH_CLASSES"
+                        ]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "JAVA"
+                        ]
+                    },
+                    "version": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PackageDTO": {
+                "required": [
+                    "packageName"
+                ],
+                "type": "object",
+                "properties": {
+                    "classes": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "packageName": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PublicApiPageLoadedPackagePublicApiDTO": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LoadedPackagePublicApiDTO"
+                        }
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "offset": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "total": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "SPDXSbomReportCreationInfoDTO": {
+                "type": "object",
+                "properties": {
+                    "created": {
+                        "type": "string"
+                    },
+                    "creators": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "SPDXSbomReportDTO": {
+                "type": "object",
+                "properties": {
+                    "SPDXID": {
+                        "type": "string"
+                    },
+                    "creationInfo": {
+                        "$ref": "#/components/schemas/SPDXSbomReportCreationInfoDTO"
+                    },
+                    "dataLicense": {
+                        "type": "string"
+                    },
+                    "documentNamespace": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "packages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SPDXSbomReportPackageDTO"
+                        }
+                    },
+                    "relationships": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SPDXSbomReportRelationshipDTO"
+                        }
+                    },
+                    "spdxVersion": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SPDXSbomReportExternalRefDTO": {
+                "type": "object",
+                "properties": {
+                    "referenceCategory": {
+                        "type": "string"
+                    },
+                    "referenceLocator": {
+                        "type": "string"
+                    },
+                    "referenceType": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SPDXSbomReportPackageDTO": {
+                "type": "object",
+                "properties": {
+                    "SPDXID": {
+                        "type": "string"
+                    },
+                    "copyrightText": {
+                        "type": "string"
+                    },
+                    "downloadLocation": {
+                        "type": "string"
+                    },
+                    "externalRefs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SPDXSbomReportExternalRefDTO"
+                        }
+                    },
+                    "filesAnalyzed": {
+                        "type": "boolean"
+                    },
+                    "licenseConcluded": {
+                        "type": "string"
+                    },
+                    "licenseDeclared": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "packageFileName": {
+                        "type": "string"
+                    },
+                    "supplier": {
+                        "type": "string"
+                    },
+                    "versionInfo": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SPDXSbomReportRelationshipDTO": {
+                "type": "object",
+                "properties": {
+                    "comment": {
+                        "type": "string"
+                    },
+                    "relatedSpdxElement": {
+                        "type": "string"
+                    },
+                    "relationshipType": {
+                        "type": "string",
+                        "enum": [
+                            "DESCRIBES",
+                            "RUNTIME_DEPENDENCY_OF"
+                        ]
+                    },
+                    "spdxElementId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "WatchedPackageDTO": {
+                "required": [
+                    "packageName"
+                ],
+                "type": "object",
+                "properties": {
+                    "classes": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    },
+                    "createdDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "packageName": {
+                        "type": "string"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "version": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "API Token": {
+                "scheme": "bearer",
+                "type": "http"
+            }
+        }
+    }
+}

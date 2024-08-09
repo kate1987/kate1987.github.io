@@ -1,0 +1,1 @@
+The time after which the action ceases to track code behavior and is automatically disabled; default = 1 hour.

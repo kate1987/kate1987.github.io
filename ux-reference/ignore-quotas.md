@@ -1,0 +1,1 @@
+The quota (rate limit) is configured by the agent configurations. Only users with `IGNORE_QUOTA` role can override the agent's quota limitation, the checkbox in the Lightrun plugin is disabled for other users.

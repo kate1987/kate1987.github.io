@@ -1,0 +1,397 @@
+site_name: Docs
+site_description: Lightrun Documentation
+site_author: Lightrun Team
+site_url: https://docs.lightrun.com/
+
+
+# # Repository
+# repo_name: lightrun-platform/documentation
+# repo_url: https://github.com/lightrun-platform/documentation
+# edit_uri: ""
+
+extra_javascript:
+  - js/ekko-lightbox.min.js
+
+extra_css:
+  - stylesheets/lightrun.css
+  - stylesheets/lightrun.scss
+  - stylesheets/ekko-lightbox.min.css
+  - stylesheets/extra.css
+
+theme:                 
+  name: material
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.png
+  icon:
+    logo: material/library
+    repo: fontawesome/brands/github
+  palette:            
+    scheme: lightrun
+  custom_dir: material
+  font:
+    text: Inter
+
+  features:
+    - navigation.indexes
+    - navigation.path
+    - prev_next_buttons_location: top
+    - content.tabs.link
+    - navigation.top
+
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - codehilite
+  - pymdownx.highlight
+  - pymdownx.keys
+  - pymdownx.critic
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.emoji
+  - mdx_truly_sane_lists
+  - md_in_html
+  - meta
+  - pymdownx.betterem:
+      smart_enable: all
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+plugins:
+  - search:
+  - encryptcontent:
+      title_prefix: '[Limited Availability]'
+      summary: 'This content is available for authorized users'
+      placeholder: 'Type password & click Enter'
+      decryption_failure_message: 'Invalid password'
+      encryption_info_message: 'Contact Lightrun Support for access to this page!'
+  - tags
+  - meta-descriptions:
+      export_csv: false
+      quiet: true
+      enable_checks: false
+  - git-revision-date-localized
+  - minify:
+      minify_html: true
+  - redirects:
+      redirect_maps:
+          'scim/okta.md': 'scim-provisioning-okta.md'
+          'scim/azure.md': 'scim-provisioning-azure-ad.md'
+          'jvm/plugin.md': 'plugin.md'
+          'python/plugin.md': 'plugin.md'
+          'node/plugin.md': 'plugin.md'
+          'vscode/installation.md': 'vscode/vscode-install-plugin.md'
+          'troubleshooting.md': 'troubleshooting/overview.md'
+          'vscode/web-ides.md' : 'vscode/vscode-dev.md'
+          'more-about-lightrun.md': 'architecture.md'
+          'pricing.md': 'get-started.md'
+          'release_notes/v1.29.md': 'release_notes/lightrun-release-notes.md'
+          'release_notes/v1.28.md': 'release_notes/lightrun-release-notes.md'
+          'release_notes/v1.27.md': 'release_notes/lightrun-release-notes.md'
+          'release_notes/v1.26.md': 'release_notes/lightrun-release-notes.md'
+          'release_notes/v1.25.md': 'release_notes/lightrun-release-notes.md'
+          'release_notes/v1.24.md': 'release_notes/lightrun-release-notes.md'
+          'release_notes/v1.23.md': 'release_notes/lightrun-release-notes.md'
+          'release_notes/v1.22.md': 'release_notes/lightrun-release-notes.md'
+          'release_notes/v1.21.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.20.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.19.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.18.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.17.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.16.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.15.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.14.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.13.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.12.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.11.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.10.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.9.md': 'release_notes/2023-releases.md'
+          'release_notes/v1.8.md': 'release_notes/2022-releases.md'
+          'release_notes/v1.7.md': 'release_notes/2022-releases.md'
+          'release_notes/v1.6.md': 'release_notes/2022-releases.md'
+          'release_notes/v1.5.md': 'release_notes/2022-releases.md'
+          'release_notes/v1.4.md': 'release_notes/2022-releases.md'
+          'release_notes/v1.3.md': 'release_notes/2022-releases.md'
+          'release_notes/v1.2.md': 'release_notes/2022-releases.md'
+          'release_notes/v1.1.md': 'release_notes/2022-releases.md'
+          'create-account.md': 'get-started.md'
+          'useradmin-roles.md': 'useradmin.md'
+          'rbac/groups.md': 'rbac/manage-groups.md'
+          'rbac/concepts.md': 'rbac/overview.md'
+          'dotnet/profile-chaining.md': 'dotnet/profiler-chaining.md'
+          # Temporary redirects
+          'vscode/plugin.md': 'vscode/vscode-install-plugin.md' # need to change to quick tour
+nav:
+  - Get Started :
+    - Lightrun Overview : 'index.md'
+    - Architecture : 'architecture.md'
+    - Get Started with Lightrun : 'get-started.md'
+  - Plugins :
+    - Overview: 'introduction/plugins.md'
+    - IntelliJ, PyCharm & WebStorm :
+      - Install the JetBrains Plugin : 'plugin.md' 
+      - Authenticate Lightrun : 'authenticate-plugin.md'
+      - Switch between Deployments: 'jetbrains/plugin-deployment-switcher.md'
+      - Quick Tour : 'getting-around.md'
+      - Dynamic Logs : 'logs.md'
+      - Snapshots : 'snapshots-plugin.md' 
+      - Metrics : 'metrics.md'
+      - Multiple Sources : 'multiple-sources.md'
+    - Visual Studio Code :
+      - Install the VSCode Plugin : 'vscode/vscode-install-plugin.md'
+      - Authenticate Lightrun : 'vscode/vscode-plugin-authentication.md'
+      - Switch the Deployment: 'vscode/deployment-switcher.md'
+      - Quick Tour : 'vscode/vscode-plugin-quick-tour.md'
+      - Dynamic Logs : 'vscode/vscode-plugin-dynamic-logs.md'
+      - Snapshots : 'vscode/vscode-plugin-snapshots.md' 
+      - Metrics : 'vscode/vscode-plugin-metrics.md'
+      - Multiple Sources : 'vscode/vscode-multiple-sources.md'
+      - Lightrun in VSCode (Java): 'vscode/vscode-setting-up-lightrun-jvm.md'
+    - Web IDEs :
+      - VSCode.dev : 'vscode/vscode-dev.md'
+      # - JetBrains Projector : 'jetbrains-projector/intro.md'
+  - Agents:
+    - Overview: 'introduction/agents.md'
+    - Java :
+      - System Requirements: 'jvm/system-requirements.md' 
+      - Install the Agent: 'jvm/agent.md'
+      - Configure the Agent : 'jvm/agent-configuration.md'
+      - Manage Tagging : 'jvm/tagging.md'
+      - Customize Dynamic Logs: 'dynamic-log-customization.md'
+      - Java Expressions : 'jvm/java-expressions.md'
+      - Build Tools (Maven & Gradle) : 'jvm/build-tools.md'
+      - Scala : 'jvm/scala.md'
+      - Kotlin: 'jvm/kotlin.md'
+      - Application Servers & Servlet Containers :
+        - Spring Boot : 'jvm/servlets/springboot.md'
+        - Tomcat : 'jvm/servlets/tomcat.md'
+        - Glassfish : 'jvm/servlets/glassfish.md'
+        - Wildfly : 'jvm/servlets/wildfly.md'
+        - Jetty : 'jvm/servlets/jetty.md'
+        - Weblogic : 'jvm/servlets/weblogic.md'
+        - MicroProfile/JakartaEE : 'jvm/servlets/microprofile.md'
+        - Google App Engine : 'jvm/servlets/google-app-engine.md'
+        - WebSphere : 'jvm/servlets/websphere.md'
+    - Python : 
+      - System Requirements: 'python/system-requirements.md'
+      - Install the Agent : 'python/agent.md'
+      - Configure the Agent : 'python/agent-configuration.md'
+      - Manage Metadata and Tagging : 'python/metadata-and-tagging.md'
+      - Frameworks :
+        - Django : 'python/frameworks/django.md'
+        - Flask : 'python/frameworks/flask.md'
+        - Apache Airflow : 'python/frameworks/airflow.md'
+        - Celery : 'python/frameworks/celery.md'
+        - Gunicorn : 'python/frameworks/gunicorn.md'
+        - Serverless Functions : 'python/frameworks/serverless.md'
+    - Node.js :
+      - System Requirements: 'node/system-requirements.md'
+      - Install the Agent : 'node/agent.md'
+      - Configure the Agent: 'node/agent-configuration.md'
+      - Manage Metadata and Tagging : 'node/metadata-and-tagging.md'
+      - Frameworks :
+        - Express : 'node/frameworks/express.md'
+        - Koa : 'node/frameworks/koa.md'
+        - Serverless Functions: 'node/frameworks/serverless.md'
+    - .NET :
+      - System Requirements : 'dotnet/system-requirements.md'
+      - Install the Agent: 'dotnet/agent.md'
+      - Configure the Agent  : 'dotnet/agent-configuration.md'
+      - Configure Profiler Chaining: 'dotnet/profiler-chaining.md'
+      - Manage Metadata and Tagging : 'dotnet/metadata-and-tagging.md'
+      - Customize Dynamic Logs : 'dotnet/dynamic-logs-customization.md'
+      - C# Expressions: 'dotnet/csharp-expressions.md'
+      - Frameworks :
+        - IIS Framework : 'dotnet/frameworks/iis-framework.md'
+  - Lightrun Actions:
+      - What Are Lightrun Actions? : 'actions.md'
+      - Dynamic Logs: 'actions/dynamic-logs.md'
+      - Snapshots: 'actions/snapshots.md'
+      - Metrics: 'actions/metrics.md'
+      - Action Configuration:
+        - Sources: 
+          - Tags: 'actions/tags.md'
+          - Custom Sources: 'actions/custom-sources.md'
+        - Action Target: 'actions/output-routing.md'
+  - Lightrun LogOptimizer:
+    - Overview : 'logoptimizer/overview.md'
+    - Scan code for log-related issues : 'logoptimizer/scan-code-using-logoptimizer.md'
+  #  - Get Started with LogOptimizer(™) (JetBrains Plugin): 'logoptimizer/quickstart.md'
+  #  - Log Statements identified by the Lightrun LogOptimizer(™): 'logoptimizer/statements.md'
+  - Lightrun Management Portal:
+    - Quick Tour : 'nav.md'
+    - Agents : 'view-agents.md'
+    - Custom Sources: 'custom-sources.md'
+    - Actions : 'team-actions.md'
+    - Dynamic Logs : 'view-logs.md'
+    - Snapshot Data : 'snapshots.md' 
+  - Data Security: 
+      - Overview : 'datasecurity/overview.md'
+      - PII Redaction :
+        - Overview: 'piiredaction/overview.md'
+        - PII Redaction Best Practices: 'piiredaction/pii-redaction-best-practices.md'
+        - Configure PII Redaction: 'piiredaction/configure-pii-redaction.md'
+      - Blocklists : 'blocklists.md'
+      - Audit System Usage : 'audit-use.md'
+  - Runtime Reachability Assessment:
+      - Overview: 'runtime_reachability_assessment/overview.md'
+      - Webooks: 'webhooks.md'
+      - Prioritize Packages to Track: 'runtime_reachability_assessment/watch-packages.md'
+      - View Loaded Packages: 'runtime_reachability_assessment/view-loaded-not-loaded-packages.md'
+      - View Dynamic SBOMS: 'runtime_reachability_assessment/dynamic-sboms.md'
+  # - Lightrun Administration (RBAC beta):
+  #   - Overview : 'useradmin.md'
+  #   - User management concepts - Groups, Roles, and Agent Pools: 'rbac/concepts.md'
+  #   - Tutorial on how to setup your Lightrun organization: 'rbac/organization.md'
+  #   - Manage Users: 'rbac/manage-users.md'
+  #   - Manage Groups:
+  #     - Learn about Groups: 'rbac/groups.md'
+  #     - Manage Groups: 'rbac/manage-groups.md'
+  #   - Manage Agent Pools:
+  #     - Learn about Agent Pools: 'rbac/pools.md'
+  #     - Manage Agent Pools: 'rbac/manage-pools.md'
+  - Administer Lightrun:
+      - Overview: 'useradmin.md'
+      - View Usage Data: 'usage-dashboard.md'
+      - Authentication and Authorization : 
+        - SSO : 
+          - SSO Overview: 'sso.md'
+          - SSO with SAML: 'sso-saml.md'
+          - SSO Login: 'sso-login.md'    
+        - SCIM : 
+          - Overview: 'scim.md'
+          - Provision SCIM Using Okta: 'scim-provisioning-okta.md'
+          - Provision SCIM Using Azure AD: 'scim-provisioning-azure-ad.md'
+        - API Keys : 'api-keys.md'
+      - Access Control :
+        - Invite a User: 'invite-a-user.md'
+        - Manage Users with Basic Access: 'manage-users.md'
+        - Role-Based Access Control (RBAC): 
+          - Overview: 'rbac/overview.md'
+          - Manage Users with RBAC: 'rbac/manage-users.md'
+          - Manage Groups with RBAC: 'rbac/manage-groups.md'
+      -  Agent Pools:
+          - Get Started with Agent Pools: 'rbac/pools.md'
+          - Manage Agent Pools: 'rbac/manage-pools.md'
+          - PII Redaction on Agent Pools: 'rbac/agent-pool-pii-redaction.md'
+      - Collect Logs : 'data-logs.md'
+      - Service Configuration : 'service-configuration.md'
+  - Deploy Lightrun:
+    - Lightrun on Docker: 'docker.md'
+    - Lightrun on Kubernetes:
+      - Introduction: 'kubernetes.md'
+      - Lightrun Kubernetes Operator: 'kubernetes-operator.md'
+      - Lightrun on Minikube:
+        - Lightrun installation with Init Containers: 'minikube.md'
+        - Lightrun installation with Persistent Volumes: 'persistent-volumes.md'
+    - Lightrun on AWS Lambda:
+      - Introduction: 'lambda/introduction.md'
+      - Lightrun on Node.js AWS Lambda:
+        - Install Lightrun with Lambda Layers: 'lambda/nodejs-layers.md'
+        - Install Lightrun with container images: 'lambda/nodejs-containers.md'
+      - Lightrun on Python AWS Lambda:
+        - Install Lightrun with Lambda Layers: 'lambda/python-layers.md'
+  - Lightrun REST API:
+    - Introduction to API: "public_api/introduction.md"
+    - API Reference: "public_api/api-reference.md"
+  - Lightrun CLI :
+    - Install the Lightrun CLI: 'cli/installation.md'
+    - Authenticate Lightrun: 'cli/authentication.md'
+    - CLI Commands: 'cli/cli_reference.md'
+    - Managers' CLI Reference: 'cli/manager_cli_reference.md'
+    # - Users' CLI Reference : 'cli.md'
+    # - Managers' CLI Reference : 'cli-manage.md' 
+  - Integrations :
+    - Overview : 'integrations/overview.md'
+    - AppDynamics : 'integrations/app-dynamic.md'
+    - Datadog :
+      - Events: 'integrations/datadog-events.md'
+      - Logs: 'integrations/datadog-logs.md'
+    - Dynatrace: 'integrations/dynatrace.md'
+    - Elastic Stack : 'integrations/elastic-stack.md'
+    - FluentD : 'integrations/fluentd.md'
+    - Grafana : 'integrations/grafana.md'
+    - HashiCorp Nomad : 'integrations/nomad.md'
+    - Instana: 'integrations/instana.md'
+    - New Relic : 'integrations/new-relic.md'
+    - Prometheus : 'integrations/prometheus.md'
+    - Sentry : 'integrations/sentry.md'    
+    - SIEM : 'integrations/siem.md' 
+    - Slack Alerts : 
+      - Overview & Configuration : 'slack-alerts-overview-configuration.md'
+      - Use Cases : 'slack-alerts-use-cases.md'
+    - StatsD : 'integrations/statsd.md'
+    - Splunk : 'integrations/splunk.md'
+    - Sumo Logic : 'integrations/sumo-logic.md' 
+  - Troubleshooting : 
+    - Overview: 'troubleshooting/overview.md'
+    - Java: 'troubleshooting/java-troubleshooting.md'
+    - Python: 'troubleshooting/python-troubleshooting.md'
+    - Node.js: 'troubleshooting/node-troubleshooting.md'
+  - Release Notes :
+    - Lightrun Release Notes : 'release_notes/lightrun-release-notes.md'
+    - Previous Releases:
+      - 2023 Releases: 'release_notes/2023-releases.md'
+      - 2022 Releases: 'release_notes/2022-releases.md'
+    - Release Information : 'release_notes/release-information.md'
+    - Known Issues : 'release_notes/known-issues.md'
+    - Functionality Changes and Deprecations: 'release_notes/functionality-changes-deprecations.md'
+#  - Public API: 
+#   - API Reference : 'public_api/api.md'
+#   - API Docs : 'public_api/api-docs.md'
+
+    
+  # TODO: Add back once it's updated with the latest and greatest
+  # - Self Hosted Deployment:
+  #   - Overview : 'onprem/index 2.md'
+  #   - System Requirements : 'onprem/sys-reqs2.md'
+  #   - Set Up : 
+  #     - Deployment Overview : 'onprem/install.md'
+  #     - Launch the Server : 'onprem/server-setup.md'
+  #     - Create Your Account : 'onprem/create-account.md'
+  #     - Set Up the Agent : 'onprem/setup-agent.md'
+  #     - Install the Plugin : 'onprem/install-client.md' 
+  
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UC9KnFnprep7q5LThL7u2c1w
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/Lightruntech
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/Lightruntech
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/lightruntech
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/lightruncommunity  
+  analytics:
+    provider: google
+    property: G-HTF6H9T595
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >-
+            Thanks for your feedback!
+
+watch:
+  - docs
+  - ux-reference
+
+# Copyright
+copyright: Copyright &copy; 2019 - 2024 Lightrun

@@ -1,0 +1,141 @@
+{% import "partials/language.html" as lang with context %}
+<footer class="md-footer">
+  {% if page.previous_page or page.next_page %}
+  <div class="md-footer-nav">
+    <nav class="md-footer__inner md-grid" aria-label="{{ lang.t('footer.title') }}">
+      {% if page.previous_page %}
+        <a href="{{ page.previous_page.url | url }}" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            {% include ".icons/material/arrow-left.svg" %}
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                {{ lang.t("footer.previous") }}
+              </span>
+              {{ page.previous_page.title }}
+            </div>
+          </div>
+        </a>
+      {% endif %}
+      {% if page.next_page %}
+        <a href="{{ page.next_page.url | url }}" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                {{ lang.t("footer.next") }}
+              </span>
+              {{ page.next_page.title }}
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            {% include ".icons/material/arrow-right.svg" %}
+          </div>
+        </a>
+      {% endif %}
+    </nav>
+  </div>
+  {% endif %}
+
+  <div class="md-footer-meta">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer__logo">
+        {% include "assets/images/logo-white.svg" %}
+      </div>
+      <div>
+        <li style="list-style-type:none">
+          <p><b>Product</b></p>
+        </li>
+
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/plugin/">IDEs &amp; Runtimes</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/enviroments/production/">Production Debugging</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/kubernetes-troubleshooting/">Kubernetes Debugging</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/serverless-debugging/">Serverless Debugging</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/feature-flag-validation/">Feature Flag Debugging</a>
+        </li>
+      </div>
+      <div>
+        <li style="list-style-type:none">
+          <p><b>Resources</b></p>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/blog/">Blog</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://docs.lightrun.com/">Documentation</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/security/">Security & Compliance</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/categories_resources/case-studies/">Case Studies</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/categories_resources/webinars/">Webinars</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/categories_resources/data-sheets/">Data Sheets</a>
+        </li>        
+      </div>      
+      <div>
+        <li style="list-style-type:none">
+          <p><b>Company</b></p>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/about/">About Us</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/pricing/">Pricing</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/categories_resources/press/">Press</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/careers/">Careers</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/terms-of-use/">Terms of Use</a>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/privacy-policy/">Privacy Policy</a>
+        </li>        
+      </div>    
+      <div>
+        <li style="list-style-type:none">
+          <p><b>Try Lightrun</b></p>
+        </li>
+        <li style="list-style-type:none">
+          <a href="https://lightrun.com/get-a-lightrun-demo/">Request a Demo</a>
+        </li>
+
+        <li style="list-style-type:none">
+          <a href="https://go.lightrun.com/contact-us">Contact Us</a>
+        </li>
+        <!-- Social links -->
+        {% block social %}
+        {% include "partials/social.html" %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright and theme information -->
+  <div class="md-footer-copyright">
+    <div class="footer-logo-smallpad">
+      {% if config.copyright %}
+      <div class="md-footer-copyright__highlight">
+        {{ config.copyright }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
