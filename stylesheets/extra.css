@@ -1,0 +1,22 @@
+.md-grid {
+    max-width: 90%;
+    height: inherit;
+}
+
+.md-sidebar__scrollwrap{
+    margin: 0;
+}
+
+.md-main__inner{
+    margin-top: 0;
+    padding-top: 0;
+}
+.md-content{
+    border-left: 1px solid #dddddd;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 0;
+  border-left-width: 4px;
+}
