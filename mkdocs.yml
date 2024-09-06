@@ -77,7 +77,8 @@ plugins:
       export_csv: false
       quiet: true
       enable_checks: false
-  - git-revision-date-localized
+  - git-revision-date-localized:
+      fallback_to_build_date: true
   - minify:
       minify_html: true
   - redirects:
